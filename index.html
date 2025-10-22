@@ -26,7 +26,7 @@
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 0 15px #ff9ff3;
-    display: none; /* Awalnya game disembunyikan */
+    display: none;
   }
 
   #scene {
@@ -52,18 +52,8 @@
     position: relative;
   }
 
-  #speaker {
-    color: #ffb6c1;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-
-  #text {
-    flex-grow: 1;
-    text-align: center;
-    line-height: 1.4;
-    min-height: 45px;
-  }
+  #speaker { color: #ffb6c1; font-weight: bold; margin-bottom: 8px; }
+  #text { flex-grow: 1; text-align: center; line-height: 1.4; min-height: 45px; }
 
   #next-btn {
     align-self: flex-end;
@@ -76,87 +66,31 @@
     cursor: pointer;
     transition: 0.3s;
   }
+  #next-btn:hover { background: #ffc0e1; }
 
-  #next-btn:hover {
-    background: #ffc0e1;
-  }
-
-  .choice-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-    gap: 8px;
-    overflow-y: auto;
-    max-height: 100px;
-  }
-
+  .choice-container { display: flex; flex-direction: column; align-items: center; margin-top: 10px; gap: 8px; overflow-y: auto; max-height: 100px; }
   .choice-btn {
-    background: #ff8bd3;
-    border: none;
-    border-radius: 8px;
-    margin: 3px 0;
-    padding: 8px 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    color: #2a0039;
-    width: 90%;
-    max-width: 250px;
-    text-align: center;
+    background: #ff8bd3; border: none; border-radius: 8px; margin: 3px 0;
+    padding: 8px 20px; font-weight: bold; cursor: pointer; transition: 0.3s;
+    color: #2a0039; width: 90%; max-width: 250px; text-align: center;
   }
-
-  .choice-btn:hover {
-    background: #ffc0e1;
-  }
+  .choice-btn:hover { background: #ffc0e1; }
 
   #music-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(255, 182, 193, 0.8);
-    border: none;
-    color: #2a0039;
-    font-weight: bold;
-    padding: 6px 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-    z-index: 10;
+    position: absolute; top: 10px; right: 10px;
+    background: rgba(255, 182, 193, 0.8); border: none; color: #2a0039;
+    font-weight: bold; padding: 6px 10px; border-radius: 8px; cursor: pointer; transition: 0.3s; z-index: 10;
   }
+  #music-btn:hover { background: #ffc0e1; }
 
-  #music-btn:hover {
-    background: #ffc0e1;
-  }
-
-  /* START screen */
   #start-screen {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: #ffb6c1;
-    font-size: 48px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 20;
-    animation: glow 1.2s infinite alternate;
+    position: absolute; width: 100%; height: 100%;
+    background: #000; display: flex; justify-content: center; align-items: center;
+    flex-direction: column; color: #ffb6c1; font-size: 48px; font-weight: bold;
+    cursor: pointer; z-index: 20; animation: glow 1.2s infinite alternate;
   }
-
-  #start-screen span {
-    font-size: 24px;
-    margin-top: 15px;
-    color: #fff;
-  }
-
-  @keyframes glow {
-    0% { text-shadow: 0 0 10px #ffb6c1, 0 0 20px #ff8bd3; }
-    100% { text-shadow: 0 0 20px #ffb6c1, 0 0 40px #ff8bd3; }
-  }
+  #start-screen span { font-size: 24px; margin-top: 15px; color: #fff; }
+  @keyframes glow { 0% { text-shadow: 0 0 10px #ffb6c1, 0 0 20px #ff8bd3; } 100% { text-shadow: 0 0 20px #ffb6c1, 0 0 40px #ff8bd3; } }
 </style>
 </head>
 <body>
@@ -183,8 +117,8 @@
 </audio>
 
 <!-- SFX -->
-<audio id="clickSFX" src="https://github.com/pipitmacintosh/one-monthVN/raw/refs/heads/main/click.wav"></audio>
-<audio id="heartSFX" src="https://github.com/pipitmacintosh/one-monthVN/raw/refs/heads/main/ring.ogg"></audio>
+<audio id="clickSFX" src="https://raw.githubusercontent.com/pipitmacintosh/one-monthVN/main/click.wav"></audio>
+<audio id="heartSFX" src="https://raw.githubusercontent.com/pipitmacintosh/one-monthVN/main/ring.ogg"></audio>
 
 <script>
 const scenes = {
@@ -193,9 +127,7 @@ const scenes = {
   s2: { image: "https://i.imgur.com/x6uyf6G.png", speaker: "Me", text: "I can't believe it's been a month since we started dating.", next: "s3" },
   s3: { image: "https://i.imgur.com/x6uyf6G.png", speaker: "You", text: "Y-Yeah... time really does fly doesn't it?", next: "choice1" },
   choice1: {
-    image: "https://i.imgur.com/2xiiNgL.png",
-    speaker: "Me",
-    text: "Do you still remember our first day together?",
+    image: "https://i.imgur.com/2xiiNgL.png", speaker: "Me", text: "Do you still remember our first day together?",
     choices: [
       { text: "Of course I do!", next: "rememberYes" },
       { text: "Hmm... not really~", next: "rememberNo" }
@@ -210,7 +142,6 @@ const scenes = {
 let currentScene = "start";
 let typingInterval = null;
 let isTyping = false;
-let bgmStarted = false;
 let musicMuted = true;
 
 const startScreen = document.getElementById("start-screen");
@@ -225,21 +156,17 @@ const heartSFX = document.getElementById("heartSFX");
 const bgm = document.getElementById("bgm");
 const musicBtn = document.getElementById("music-btn");
 
-// Klik START → mulai game + play bgm
+// START screen click → mulai game + play BGM
 startScreen.addEventListener("click", () => {
   startScreen.style.opacity = 0;
   setTimeout(() => {
     startScreen.style.display = "none";
     gameContainer.style.display = "block";
-
-    // Play bgm setelah user klik START
     bgm.muted = false;
-    bgm.play().catch(() => {});
-
+    bgm.play().catch(() => console.log("Audio play failed"));
     showScene("start");
   }, 500);
 });
-
 
 function showScene(name) {
   const current = scenes[name];
@@ -283,49 +210,28 @@ function typeText(content) {
   let index = 0;
   isTyping = true;
   text.textContent = "";
-
   typingInterval = setInterval(() => {
     text.textContent += content.charAt(index);
     index++;
-    if (index >= content.length) {
-      clearInterval(typingInterval);
-      isTyping = false;
-    }
+    if (index >= content.length) { clearInterval(typingInterval); isTyping = false; }
   }, 40);
 }
 
 nextBtn.addEventListener("click", () => {
-  if (isTyping) {
-    clearInterval(typingInterval);
-    text.textContent = scenes[currentScene].text;
-    isTyping = false;
-    return;
-  }
-
+  if (isTyping) { clearInterval(typingInterval); text.textContent = scenes[currentScene].text; isTyping = false; return; }
   const nextScene = scenes[currentScene].next;
   if (nextScene) showScene(nextScene);
 });
 
 musicBtn.addEventListener("click", () => {
-  if (musicMuted) {
-    bgm.muted = false;
-    bgm.play().catch(() => console.log("Audio play failed"));
-  } else {
-    bgm.muted = true;
-  }
+  if (musicMuted) { bgm.muted = false; bgm.play().catch(() => {}); }
+  else { bgm.muted = true; }
   musicMuted = !musicMuted;
   updateMusicButton();
 });
 
-function updateMusicButton() {
-  musicBtn.textContent = musicMuted ? "🔇 Music Off" : "🎵 Music On";
-}
+function updateMusicButton() { musicBtn.textContent = musicMuted ? "🔇 Music Off" : "🎵 Music On"; }
 </script>
 
 </body>
 </html>
-
-
-
-
-
