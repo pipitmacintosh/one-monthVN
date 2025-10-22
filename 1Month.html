@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our 1-Month Story 💞</title>
+<style>
+  body {
+    margin: 0;
+    background-color: #000;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .game-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    aspect-ratio: 16/9;
+    background: #111;
+    border: 3px solid #ffb6c1;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 15px #ff9ff3;
+    display: none; /* Awalnya game disembunyikan */
+  }
+
+  #scene {
+    width: 100%;
+    height: 60%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+
+  #dialogue-box {
+    height: 40%;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 15px 20px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  #speaker {
+    color: #ffb6c1;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  #text {
+    flex-grow: 1;
+    text-align: center;
+    line-height: 1.4;
+    min-height: 45px;
+  }
+
+  #next-btn {
+    align-self: flex-end;
+    padding: 6px 15px;
+    border: none;
+    background: #ff8bd3;
+    color: #2a0039;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  #next-btn:hover {
+    background: #ffc0e1;
+  }
+
+  .choice-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    gap: 8px;
+    overflow-y: auto;
+    max-height: 100px;
+  }
+
+  .choice-btn {
+    background: #ff8bd3;
+    border: none;
+    border-radius: 8px;
+    margin: 3px 0;
+    padding: 8px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #2a0039;
+    width: 90%;
+    max-width: 250px;
+    text-align: center;
+  }
+
+  .choice-btn:hover {
+    background: #ffc0e1;
+  }
+
+  #music-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 182, 193, 0.8);
+    border: none;
+    color: #2a0039;
+    font-weight: bold;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 10;
+  }
+
+  #music-btn:hover {
+    background: #ffc0e1;
+  }
+
+  /* START screen */
+  #start-screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #ffb6c1;
+    font-size: 48px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 20;
+    animation: glow 1.2s infinite alternate;
+  }
+
+  #start-screen span {
+    font-size: 24px;
+    margin-top: 15px;
+    color: #fff;
+  }
+
+  @keyframes glow {
+    0% { text-shadow: 0 0 10px #ffb6c1, 0 0 20px #ff8bd3; }
+    100% { text-shadow: 0 0 20px #ffb6c1, 0 0 40px #ff8bd3; }
+  }
+</style>
+</head>
+<body>
+
+<div id="start-screen">
+  START
+  <span>Click to begin 💖</span>
+</div>
+
+<div class="game-container">
+  <button id="music-btn">🔇 Music Off</button>
+  <div id="scene"></div>
+  <div id="dialogue-box">
+    <div id="speaker"></div>
+    <div id="text"></div>
+    <div id="choices" class="choice-container"></div>
+    <button id="next-btn">Next ▶</button>
+  </div>
+</div>
+
+<!-- Background music -->
+<audio id="bgm" loop>
+  <source src="audio/bgm.mp3" type="audio/mpeg">
+</audio>
+
+<!-- SFX -->
+<audio id="clickSFX" src="audio/click.mp3"></audio>
+<audio id="heartSFX" src="audio/heart.mp3"></audio>
+
+<script>
+const scenes = {
+  start: { image: "https://i.imgur.com/VVIyLdu.png", speaker: "Me", text: "H-hey... don’t look at me like that...", next: "s1" },
+  s1: { image: "https://i.imgur.com/VVIyLdu.png", speaker: "You", text: "Hehe~ you’re blushing again.", next: "s2" },
+  s2: { image: "https://i.imgur.com/x6uyf6G.png", speaker: "Me", text: "I can't believe it's been a month since we started dating.", next: "s3" },
+  s3: { image: "https://i.imgur.com/x6uyf6G.png", speaker: "You", text: "Y-Yeah... time really does fly doesn't it?", next: "choice1" },
+  choice1: {
+    image: "https://i.imgur.com/2xiiNgL.png",
+    speaker: "Me",
+    text: "Do you still remember our first day together?",
+    choices: [
+      { text: "Of course I do!", next: "rememberYes" },
+      { text: "Hmm... not really~", next: "rememberNo" }
+    ]
+  },
+  rememberYes: { image: "https://i.imgur.com/2xiiNgL.png", speaker: "You", text: "Of course I do! I’ll never forget it.", sound: "heart", next: "afterChoice" },
+  rememberNo: { image: "https://i.imgur.com/2xiiNgL.png", speaker: "You", text: "Hmm... maybe you should remind me again~", next: "afterChoice" },
+  afterChoice: { image: "https://i.imgur.com/LYpGoP1.png", speaker: "Me", text: "Anyway..., no matter what I'm just happy that you're here with me. I love you.", next: "final" },
+  final: { image: "https://i.imgur.com/LYpGoP1.png", speaker: "You", text: "I love you too 💖" }
+};
+
+let currentScene = "start";
+let typingInterval = null;
+let isTyping = false;
+let bgmStarted = false;
+let musicMuted = true;
+
+const startScreen = document.getElementById("start-screen");
+const gameContainer = document.querySelector(".game-container");
+const scene = document.getElementById("scene");
+const speaker = document.getElementById("speaker");
+const text = document.getElementById("text");
+const nextBtn = document.getElementById("next-btn");
+const choicesContainer = document.getElementById("choices");
+const clickSFX = document.getElementById("clickSFX");
+const heartSFX = document.getElementById("heartSFX");
+const bgm = document.getElementById("bgm");
+const musicBtn = document.getElementById("music-btn");
+
+// Klik START → mulai game + play bgm
+startScreen.addEventListener("click", () => {
+  startScreen.style.opacity = 0;
+  setTimeout(() => {
+    startScreen.style.display = "none";
+    gameContainer.style.display = "block";
+
+    if (!bgmStarted) {
+      bgm.muted = false;
+      bgm.play().catch(() => console.log("Audio play failed"));
+      bgmStarted = true;
+      musicMuted = false;
+      updateMusicButton();
+    }
+
+    showScene("start");
+  }, 500);
+});
+
+function showScene(name) {
+  const current = scenes[name];
+  currentScene = name;
+  clearInterval(typingInterval);
+  isTyping = false;
+
+  scene.style.opacity = 0;
+  setTimeout(() => {
+    scene.style.backgroundImage = `url('${current.image}')`;
+    scene.style.opacity = 1;
+  }, 400);
+
+  speaker.textContent = current.speaker + ":";
+  text.textContent = "";
+  typeText(current.text);
+
+  clickSFX.play();
+  choicesContainer.innerHTML = "";
+
+  if (current.choices) {
+    nextBtn.style.display = "none";
+    current.choices.forEach(choice => {
+      const btn = document.createElement("button");
+      btn.classList.add("choice-btn");
+      btn.textContent = choice.text;
+      btn.onclick = () => {
+        clickSFX.play();
+        showScene(choice.next);
+      };
+      choicesContainer.appendChild(btn);
+    });
+  } else {
+    nextBtn.style.display = current.next ? "block" : "none";
+  }
+
+  if (current.sound === "heart") heartSFX.play();
+}
+
+function typeText(content) {
+  let index = 0;
+  isTyping = true;
+  text.textContent = "";
+
+  typingInterval = setInterval(() => {
+    text.textContent += content.charAt(index);
+    index++;
+    if (index >= content.length) {
+      clearInterval(typingInterval);
+      isTyping = false;
+    }
+  }, 40);
+}
+
+nextBtn.addEventListener("click", () => {
+  if (isTyping) {
+    clearInterval(typingInterval);
+    text.textContent = scenes[currentScene].text;
+    isTyping = false;
+    return;
+  }
+
+  const nextScene = scenes[currentScene].next;
+  if (nextScene) showScene(nextScene);
+});
+
+musicBtn.addEventListener("click", () => {
+  if (musicMuted) {
+    bgm.muted = false;
+    bgm.play().catch(() => console.log("Audio play failed"));
+  } else {
+    bgm.muted = true;
+  }
+  musicMuted = !musicMuted;
+  updateMusicButton();
+});
+
+function updateMusicButton() {
+  musicBtn.textContent = musicMuted ? "🔇 Music Off" : "🎵 Music On";
+}
+</script>
+
+</body>
+</html>
