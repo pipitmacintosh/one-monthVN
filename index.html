@@ -232,17 +232,14 @@ startScreen.addEventListener("click", () => {
     startScreen.style.display = "none";
     gameContainer.style.display = "block";
 
-    if (!bgmStarted) {
-      bgm.muted = false;
-      bgm.play().catch(() => console.log("Audio play failed"));
-      bgmStarted = true;
-      musicMuted = false;
-      updateMusicButton();
-    }
+    // Play bgm setelah user klik START
+    bgm.muted = false;
+    bgm.play().catch(() => {});
 
     showScene("start");
   }, 500);
 });
+
 
 function showScene(name) {
   const current = scenes[name];
@@ -327,6 +324,7 @@ function updateMusicButton() {
 
 </body>
 </html>
+
 
 
 
