@@ -6,7 +6,6 @@
 <title>Our 1-Month Story 💞</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
   body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -15,18 +14,13 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: 
-      linear-gradient(rgba(255, 180, 180, 0.4), rgba(255, 100, 150, 0.4)),
+    background: linear-gradient(rgba(255,180,180,0.4), rgba(255,100,150,0.4)),
       url('https://images.unsplash.com/photo-1501973801540-537f08ccae7b?auto=format&fit=crop&w=1280&q=80')
       no-repeat center center fixed;
     background-size: cover;
     animation: fadeIn 2s ease-in-out;
   }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
 
   .game-container {
     position: relative;
@@ -40,146 +34,75 @@
     box-shadow: 0 0 20px rgba(255,180,200,0.7);
     display: none;
   }
-
   #scene {
-    width: 100%;
-    height: 60%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 0.8s ease;
+    width: 100%; height: 60%;
+    background-size: contain; background-repeat: no-repeat; background-position: center;
+    opacity: 0; transition: opacity 0.8s ease;
   }
-
   #dialogue-box {
-    height: 40%;
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    padding: 15px 20px;
-    font-size: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    box-sizing: border-box;
-    position: relative;
+    height: 40%; background: rgba(0,0,0,0.8); color: #fff;
+    padding: 15px 20px; font-size: 16px; display: flex; flex-direction: column;
+    justify-content: flex-start; box-sizing: border-box;
   }
-
-  #speaker { color: #ffb6c1; font-weight: bold; margin-bottom: 8px; }
-  #text { flex-grow: 1; text-align: center; line-height: 1.4; min-height: 45px; }
-
+  #speaker { color:#ffb6c1; font-weight:bold; margin-bottom:8px; }
+  #text { flex-grow:1; text-align:center; line-height:1.4; min-height:45px; }
   #next-btn {
-    align-self: flex-end;
-    padding: 6px 15px;
-    border: none;
-    background: #ff8bd3;
-    color: #2a0039;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    z-index: 20;
+    align-self:flex-end; padding:6px 15px; border:none;
+    background:#ff8bd3; color:#2a0039; border-radius:8px; font-weight:bold;
+    cursor:pointer; transition:0.3s; z-index:20;
   }
-  #next-btn:hover { background: #ffc0e1; }
+  #next-btn:hover { background:#ffc0e1; }
 
   .choice-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-    gap: 8px;
-    overflow-y: auto;
-    max-height: 100px;
+    display:flex; flex-direction:column; align-items:center; margin-top:10px; gap:8px;
   }
-
   .choice-btn {
-    background: #ff8bd3;
-    border: none;
-    border-radius: 8px;
-    margin: 3px 0;
-    padding: 8px 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    color: #2a0039;
-    width: 90%;
-    max-width: 250px;
-    text-align: center;
+    background:#ff8bd3; border:none; border-radius:8px;
+    margin:3px 0; padding:8px 20px; font-weight:bold; cursor:pointer;
+    transition:0.3s; color:#2a0039; width:90%; max-width:250px; text-align:center;
   }
-  .choice-btn:hover { background: #ffc0e1; }
+  .choice-btn:hover { background:#ffc0e1; }
 
   #music-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(255, 182, 193, 0.8);
-    border: none;
-    color: #2a0039;
-    font-weight: bold;
-    padding: 6px 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-    z-index: 30;
+    position:absolute; top:10px; right:10px;
+    background:rgba(255,182,193,0.8); border:none; color:#2a0039;
+    font-weight:bold; padding:6px 10px; border-radius:8px; cursor:pointer;
+    transition:0.3s; z-index:30;
   }
-  #music-btn:hover { background: #ffc0e1; }
+  #music-btn:hover { background:#ffc0e1; }
 
   #start-screen, #ending-screen {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.85);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: #ffb6c1;
-    font-size: 36px;
-    font-weight: bold;
-    text-align: center;
-    z-index: 40;
+    position:absolute; width:100%; height:100%;
+    background:rgba(0,0,0,0.85); display:flex; justify-content:center;
+    align-items:center; flex-direction:column; color:#ffb6c1;
+    font-size:36px; font-weight:bold; text-align:center; z-index:40;
   }
-
-  #start-screen { cursor: pointer; animation: glow 1.2s infinite alternate; }
-  #start-screen span { font-size: 24px; margin-top: 15px; color: #fff; }
-
+  #start-screen { cursor:pointer; animation:glow 1.2s infinite alternate; }
+  #start-screen span { font-size:24px; margin-top:15px; color:#fff; }
   @keyframes glow {
-    0% { text-shadow: 0 0 10px #ffb6c1, 0 0 20px #ff8bd3; }
-    100% { text-shadow: 0 0 20px #ffb6c1, 0 0 40px #ff8bd3; }
+    0%{ text-shadow:0 0 10px #ffb6c1,0 0 20px #ff8bd3; }
+    100%{ text-shadow:0 0 20px #ffb6c1,0 0 40px #ff8bd3; }
   }
 
   #ending-screen {
-    display: none;
-    animation: fadeIn 1.5s ease-in-out;
+    display:none; animation:fadeIn 2s ease-in-out;
   }
-
   #ending-screen button {
-    margin-top: 25px;
-    padding: 10px 20px;
-    background: #ff8bd3;
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #2a0039;
-    transition: 0.3s;
+    margin-top:25px; padding:10px 20px; background:#ff8bd3;
+    border:none; border-radius:10px; font-weight:bold; cursor:pointer;
+    color:#2a0039; transition:0.3s;
   }
-  #ending-screen button:hover { background: #ffc0e1; }
+  #ending-screen button:hover { background:#ffc0e1; }
 
-  /* 🌸 MOBILE ADJUSTMENT */
-  @media (max-width: 768px) {
-    .game-container { width: 95%; aspect-ratio: auto; height: 80vh; border: none; border-radius: 8px; }
-    #dialogue-box { font-size: 14px; padding: 10px; }
-    #next-btn { font-size: 14px; padding: 5px 10px; position: fixed; bottom: 3vh; right: 5vw; }
-    #music-btn { font-size: 12px; padding: 4px 8px; top: 8px; right: 8px; }
+  @media (max-width:768px) {
+    .game-container{width:95%;height:80vh;aspect-ratio:auto;border:none;}
+    #dialogue-box{font-size:14px;padding:10px;}
   }
 </style>
 </head>
 <body>
 
-<div id="start-screen">
-  START
-  <span>Click to begin 💖</span>
-</div>
+<div id="start-screen">START<span>Click to begin 💖</span></div>
 
 <div class="game-container">
   <button id="music-btn">🔇 Music Off</button>
@@ -193,148 +116,125 @@
 </div>
 
 <div id="ending-screen">
-  <div>🎮💕 Congratulations, you’ve completed<br>“Dating Me — Chapter 1: The Beginner’s Route”! 💕🎮</div>
-  <div style="margin-top:10px; font-size:20px; color:#fff;">Ready for the next level?</div>
-  <button onclick="restartGame()">Restart 💞</button>
+  <div style="font-size:28px;">💞 Thank you for spending this month with me 💞</div>
+  <div style="margin-top:10px; font-size:20px; color:#fff;">
+    You’re my favorite notification every day 📱💌<br>
+    and honestly... I’d swipe right again every time 😳💘
+  </div>
+  <button onclick="restartGame()">Play Again 💞</button>
 </div>
 
-<!-- Background music -->
 <audio id="bgm" loop>
   <source src="https://raw.githubusercontent.com/pipitmacintosh/one-monthVN/main/love.mp3" type="audio/mpeg">
 </audio>
-
-<!-- SFX -->
 <audio id="clickSFX" src="https://raw.githubusercontent.com/pipitmacintosh/one-monthVN/main/click.wav"></audio>
 <audio id="heartSFX" src="https://raw.githubusercontent.com/pipitmacintosh/one-monthVN/main/ring.ogg"></audio>
 
 <script>
 const scenes = {
-  start: { image: "https://i.imgur.com/VVIyLdu.png", speaker: "Me", text: "H-hey... don’t look at me like that...", next: "s1" },
-  s1: { image: "https://i.imgur.com/VVIyLdu.png", speaker: "You", text: "Hehe~ you’re blushing again.", next: "s2" },
-  s2: { image: "https://i.imgur.com/x6uyf6G.png", speaker: "Me", text: "I can't believe it's been a month since we started dating.", next: "s3" },
-  s3: { image: "https://i.imgur.com/x6uyf6G.png", speaker: "You", text: "Y-Yeah... time really does fly doesn't it?", next: "choice1" },
-  choice1: {
-    image: "https://i.imgur.com/2xiiNgL.png", speaker: "Me", text: "Do you still remember our first day together?",
-    choices: [
-      { text: "Of course I do!", next: "rememberYes" },
-      { text: "Hmm... not really~", next: "rememberNo" }
+  start:{image:"https://i.imgur.com/VVIyLdu.png",speaker:"Me",text:"H-hey... don’t look at me like that...",next:"s1"},
+  s1:{image:"https://i.imgur.com/VVIyLdu.png",speaker:"You",text:"Hehe~ you’re blushing again.",next:"s2"},
+  s2:{image:"https://i.imgur.com/x6uyf6G.png",speaker:"Me",text:"I can't believe it's been a month since we started dating.",next:"s3"},
+  s3:{image:"https://i.imgur.com/x6uyf6G.png",speaker:"You",text:"Y-Yeah... time really does fly doesn't it?",next:"choice1"},
+  choice1:{
+    image:"https://i.imgur.com/2xiiNgL.png",speaker:"Me",text:"Do you still remember our first day together?",
+    choices:[
+      {text:"Of course I do!",next:"rememberYes"},
+      {text:"Hmm... not really~",next:"rememberNo"}
     ]
   },
-  rememberYes: { image: "https://i.imgur.com/2xiiNgL.png", speaker: "You", text: "Of course I do! I’ll never forget it.", sound: "heart", next: "afterChoice" },
-  rememberNo: { image: "https://i.imgur.com/2xiiNgL.png", speaker: "You", text: "Hmm... maybe you should remind me again~", next: "afterChoice" },
-  afterChoice: { image: "https://i.imgur.com/LYpGoP1.png", speaker: "Me", text: "Anyway..., no matter what I'm just happy that you're here with me. I love you.", next: "final" },
-  final: { image: "https://i.imgur.com/LYpGoP1.png", speaker: "You", text: "I love you too 💖", next: null }
+  rememberYes:{image:"https://i.imgur.com/2xiiNgL.png",speaker:"You",text:"Of course I do! I’ll never forget it.",sound:"heart",next:"afterChoice"},
+  rememberNo:{image:"https://i.imgur.com/2xiiNgL.png",speaker:"You",text:"Hmm... maybe you should remind me again~",next:"afterChoice"},
+  afterChoice:{image:"https://i.imgur.com/LYpGoP1.png",speaker:"Me",text:"Anyway..., no matter what I'm just happy that you're here with me. I love you.",next:"final"},
+  final:{image:"https://i.imgur.com/LYpGoP1.png",speaker:"You",text:"I love you too 💖",next:null}
 };
 
-let currentScene = "start";
-let typingInterval = null;
-let isTyping = false;
-let musicMuted = false;
+let currentScene="start",typingInterval,isTyping=false,musicMuted=false;
+const startScreen=document.getElementById("start-screen"),
+      endingScreen=document.getElementById("ending-screen"),
+      gameContainer=document.querySelector(".game-container"),
+      scene=document.getElementById("scene"),
+      speaker=document.getElementById("speaker"),
+      text=document.getElementById("text"),
+      nextBtn=document.getElementById("next-btn"),
+      choicesContainer=document.getElementById("choices"),
+      clickSFX=document.getElementById("clickSFX"),
+      heartSFX=document.getElementById("heartSFX"),
+      bgm=document.getElementById("bgm"),
+      musicBtn=document.getElementById("music-btn");
 
-const startScreen = document.getElementById("start-screen");
-const endingScreen = document.getElementById("ending-screen");
-const gameContainer = document.querySelector(".game-container");
-const scene = document.getElementById("scene");
-const speaker = document.getElementById("speaker");
-const text = document.getElementById("text");
-const nextBtn = document.getElementById("next-btn");
-const choicesContainer = document.getElementById("choices");
-const clickSFX = document.getElementById("clickSFX");
-const heartSFX = document.getElementById("heartSFX");
-const bgm = document.getElementById("bgm");
-const musicBtn = document.getElementById("music-btn");
-
-startScreen.addEventListener("click", () => {
-  startScreen.style.opacity = 0;
-  setTimeout(() => {
-    startScreen.style.display = "none";
-    gameContainer.style.display = "block";
-    bgm.volume = 0.4;
-    bgm.muted = false;
-    bgm.play().catch(() => console.log("Audio play failed"));
+startScreen.addEventListener("click",()=>{
+  startScreen.style.opacity=0;
+  setTimeout(()=>{
+    startScreen.style.display="none";
+    gameContainer.style.display="block";
+    bgm.volume=0.4; bgm.muted=false; bgm.play().catch(()=>{});
     showScene("start");
-  }, 500);
+  },500);
 });
 
-function showScene(name) {
-  const current = scenes[name];
-  currentScene = name;
-  clearInterval(typingInterval);
-  isTyping = false;
-
-  scene.style.opacity = 0;
-  setTimeout(() => {
-    scene.style.backgroundImage = `url('${current.image}')`;
-    scene.style.opacity = 1;
-  }, 400);
-
-  speaker.textContent = current.speaker + ":";
-  text.textContent = "";
+function showScene(name){
+  const current=scenes[name];
+  currentScene=name;
+  clearInterval(typingInterval); isTyping=false;
+  scene.style.opacity=0;
+  setTimeout(()=>{scene.style.backgroundImage=`url('${current.image}')`;scene.style.opacity=1;},400);
+  speaker.textContent=current.speaker+":";
+  text.textContent="";
   typeText(current.text);
-
   clickSFX.play();
-  choicesContainer.innerHTML = "";
+  choicesContainer.innerHTML="";
 
-  if (current.choices) {
-    nextBtn.style.display = "none";
-    current.choices.forEach(choice => {
-      const btn = document.createElement("button");
+  if(current.choices){
+    nextBtn.style.display="none";
+    current.choices.forEach(choice=>{
+      const btn=document.createElement("button");
       btn.classList.add("choice-btn");
-      btn.textContent = choice.text;
-      btn.onclick = () => {
-        clickSFX.play();
-        showScene(choice.next);
-      };
+      btn.textContent=choice.text;
+      btn.onclick=()=>{clickSFX.play();showScene(choice.next);};
       choicesContainer.appendChild(btn);
     });
-  } else {
-    nextBtn.style.display = current.next ? "block" : "none";
-  }
+  } else nextBtn.style.display=current.next?"block":"none";
 
-  if (current.sound === "heart") heartSFX.play();
-
-  // 🌸 Show ending screen
-  if (name === "final") {
-    setTimeout(() => {
-      gameContainer.style.display = "none";
-      endingScreen.style.display = "flex";
-    }, 3000);
+  if(current.sound==="heart") heartSFX.play();
+  if(name==="final"){
+    // 🌸 show ending screen 2.5s after last text done typing
+    setTimeout(()=>{showEnding();},4000);
   }
 }
 
-function typeText(content) {
-  let index = 0;
-  isTyping = true;
-  text.textContent = "";
-  typingInterval = setInterval(() => {
-    text.textContent += content.charAt(index);
-    index++;
-    if (index >= content.length) { clearInterval(typingInterval); isTyping = false; }
-  }, 40);
+function showEnding(){
+  gameContainer.style.display="none";
+  endingScreen.style.display="flex";
+  endingScreen.style.opacity=0;
+  setTimeout(()=>{endingScreen.style.opacity=1;},100);
 }
 
-nextBtn.addEventListener("click", () => {
-  if (isTyping) { clearInterval(typingInterval); text.textContent = scenes[currentScene].text; isTyping = false; return; }
-  const nextScene = scenes[currentScene].next;
-  if (nextScene) showScene(nextScene);
-});
-
-musicBtn.addEventListener("click", () => {
-  musicMuted = !musicMuted;
-  bgm.muted = musicMuted;
-  updateMusicButton();
-});
-
-function updateMusicButton() {
-  musicBtn.textContent = musicMuted ? "🔇 Music Off" : "🎵 Music On";
+function typeText(content){
+  let i=0; isTyping=true; text.textContent="";
+  typingInterval=setInterval(()=>{
+    text.textContent+=content.charAt(i);
+    i++;
+    if(i>=content.length){clearInterval(typingInterval);isTyping=false;}
+  },40);
 }
 
-function restartGame() {
-  endingScreen.style.display = "none";
-  gameContainer.style.display = "block";
+nextBtn.addEventListener("click",()=>{
+  if(isTyping){clearInterval(typingInterval);text.textContent=scenes[currentScene].text;isTyping=false;return;}
+  const next=scenes[currentScene].next;
+  if(next)showScene(next);
+});
+
+musicBtn.addEventListener("click",()=>{
+  musicMuted=!musicMuted; bgm.muted=musicMuted;
+  musicBtn.textContent=musicMuted?"🔇 Music Off":"🎵 Music On";
+});
+
+function restartGame(){
+  endingScreen.style.display="none";
+  gameContainer.style.display="block";
   showScene("start");
 }
 </script>
-
 </body>
 </html>
