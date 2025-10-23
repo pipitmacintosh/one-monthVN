@@ -65,32 +65,163 @@
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
+    z-index: 20;
   }
   #next-btn:hover { background: #ffc0e1; }
 
-  .choice-container { display: flex; flex-direction: column; align-items: center; margin-top: 10px; gap: 8px; overflow-y: auto; max-height: 100px; }
+  .choice-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    gap: 8px;
+    overflow-y: auto;
+    max-height: 100px;
+  }
+
   .choice-btn {
-    background: #ff8bd3; border: none; border-radius: 8px; margin: 3px 0;
-    padding: 8px 20px; font-weight: bold; cursor: pointer; transition: 0.3s;
-    color: #2a0039; width: 90%; max-width: 250px; text-align: center;
+    background: #ff8bd3;
+    border: none;
+    border-radius: 8px;
+    margin: 3px 0;
+    padding: 8px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #2a0039;
+    width: 90%;
+    max-width: 250px;
+    text-align: center;
   }
   .choice-btn:hover { background: #ffc0e1; }
 
   #music-btn {
-    position: absolute; top: 10px; right: 10px;
-    background: rgba(255, 182, 193, 0.8); border: none; color: #2a0039;
-    font-weight: bold; padding: 6px 10px; border-radius: 8px; cursor: pointer; transition: 0.3s; z-index: 10;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 182, 193, 0.8);
+    border: none;
+    color: #2a0039;
+    font-weight: bold;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 30;
   }
   #music-btn:hover { background: #ffc0e1; }
 
   #start-screen {
-    position: absolute; width: 100%; height: 100%;
-    background: #000; display: flex; justify-content: center; align-items: center;
-    flex-direction: column; color: #ffb6c1; font-size: 48px; font-weight: bold;
-    cursor: pointer; z-index: 20; animation: glow 1.2s infinite alternate;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #ffb6c1;
+    font-size: 48px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 40;
+    animation: glow 1.2s infinite alternate;
   }
-  #start-screen span { font-size: 24px; margin-top: 15px; color: #fff; }
-  @keyframes glow { 0% { text-shadow: 0 0 10px #ffb6c1, 0 0 20px #ff8bd3; } 100% { text-shadow: 0 0 20px #ffb6c1, 0 0 40px #ff8bd3; } }
+
+  #start-screen span {
+    font-size: 24px;
+    margin-top: 15px;
+    color: #fff;
+  }
+
+  @keyframes glow {
+    0% { text-shadow: 0 0 10px #ffb6c1, 0 0 20px #ff8bd3; }
+    100% { text-shadow: 0 0 20px #ffb6c1, 0 0 40px #ff8bd3; }
+  }
+
+  /* 🌸 MOBILE-FRIENDLY ADJUSTMENTS */
+  @media (max-width: 768px) {
+    body {
+      height: 100dvh;
+      overflow: hidden;
+    }
+
+    .game-container {
+      aspect-ratio: auto;
+      width: 100vw;
+      height: 100dvh;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    #scene {
+      height: 55%;
+      background-size: cover;
+    }
+
+    #dialogue-box {
+      height: 45%;
+      font-size: 14px;
+      padding: 10px 15px;
+    }
+
+    #next-btn {
+      font-size: 14px;
+      padding: 6px 12px;
+      position: fixed;
+      bottom: 3vh;
+      right: 4vw;
+      z-index: 9999;
+    }
+
+    .choice-btn {
+      font-size: 14px;
+      padding: 8px 12px;
+      width: 80%;
+    }
+
+    #music-btn {
+      font-size: 12px;
+      top: 8px;
+      right: 8px;
+      padding: 4px 8px;
+    }
+
+    #start-screen {
+      font-size: 32px;
+    }
+
+    #start-screen span {
+      font-size: 18px;
+    }
+  }
+
+  /* 🌸 EXTRA SMALL DEVICES (smartphones under 400px) */
+  @media (max-width: 400px) {
+    #dialogue-box {
+      font-size: 12px;
+      padding: 8px;
+    }
+
+    #next-btn {
+      font-size: 12px;
+      padding: 5px 10px;
+      bottom: 2vh;
+      right: 3vw;
+    }
+
+    #music-btn {
+      font-size: 10px;
+      padding: 3px 6px;
+    }
+
+    .choice-btn {
+      font-size: 12px;
+      padding: 6px 10px;
+      width: 85%;
+    }
+  }
 </style>
 </head>
 <body>
@@ -156,7 +287,6 @@ const heartSFX = document.getElementById("heartSFX");
 const bgm = document.getElementById("bgm");
 const musicBtn = document.getElementById("music-btn");
 
-// START screen click → mulai game + play BGM
 startScreen.addEventListener("click", () => {
   startScreen.style.opacity = 0;
   setTimeout(() => {
