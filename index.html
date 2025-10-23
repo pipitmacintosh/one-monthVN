@@ -123,7 +123,7 @@
   }
   #music-btn:hover { background: #ffc0e1; }
 
-  #start-screen {
+  #start-screen, #ending-screen {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -133,53 +133,44 @@
     align-items: center;
     flex-direction: column;
     color: #ffb6c1;
-    font-size: 48px;
+    font-size: 36px;
     font-weight: bold;
-    cursor: pointer;
+    text-align: center;
     z-index: 40;
-    animation: glow 1.2s infinite alternate;
   }
 
-  #start-screen span {
-    font-size: 24px;
-    margin-top: 15px;
-    color: #fff;
-  }
+  #start-screen { cursor: pointer; animation: glow 1.2s infinite alternate; }
+  #start-screen span { font-size: 24px; margin-top: 15px; color: #fff; }
 
   @keyframes glow {
     0% { text-shadow: 0 0 10px #ffb6c1, 0 0 20px #ff8bd3; }
     100% { text-shadow: 0 0 20px #ffb6c1, 0 0 40px #ff8bd3; }
   }
 
+  #ending-screen {
+    display: none;
+    animation: fadeIn 1.5s ease-in-out;
+  }
+
+  #ending-screen button {
+    margin-top: 25px;
+    padding: 10px 20px;
+    background: #ff8bd3;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #2a0039;
+    transition: 0.3s;
+  }
+  #ending-screen button:hover { background: #ffc0e1; }
+
   /* 🌸 MOBILE ADJUSTMENT */
   @media (max-width: 768px) {
-    .game-container {
-      width: 95%;
-      aspect-ratio: auto;
-      height: 80vh;
-      border: none;
-      border-radius: 8px;
-    }
-
-    #dialogue-box {
-      font-size: 14px;
-      padding: 10px;
-    }
-
-    #next-btn {
-      font-size: 14px;
-      padding: 5px 10px;
-      position: fixed;
-      bottom: 3vh;
-      right: 5vw;
-    }
-
-    #music-btn {
-      font-size: 12px;
-      padding: 4px 8px;
-      top: 8px;
-      right: 8px;
-    }
+    .game-container { width: 95%; aspect-ratio: auto; height: 80vh; border: none; border-radius: 8px; }
+    #dialogue-box { font-size: 14px; padding: 10px; }
+    #next-btn { font-size: 14px; padding: 5px 10px; position: fixed; bottom: 3vh; right: 5vw; }
+    #music-btn { font-size: 12px; padding: 4px 8px; top: 8px; right: 8px; }
   }
 </style>
 </head>
@@ -199,6 +190,12 @@
     <div id="choices" class="choice-container"></div>
     <button id="next-btn">Next ▶</button>
   </div>
+</div>
+
+<div id="ending-screen">
+  <div>🎮💕 Congratulations, you’ve completed<br>“Dating Me — Chapter 1: The Beginner’s Route”! 💕🎮</div>
+  <div style="margin-top:10px; font-size:20px; color:#fff;">Ready for the next level?</div>
+  <button onclick="restartGame()">Restart 💞</button>
 </div>
 
 <!-- Background music -->
@@ -226,7 +223,7 @@ const scenes = {
   rememberYes: { image: "https://i.imgur.com/2xiiNgL.png", speaker: "You", text: "Of course I do! I’ll never forget it.", sound: "heart", next: "afterChoice" },
   rememberNo: { image: "https://i.imgur.com/2xiiNgL.png", speaker: "You", text: "Hmm... maybe you should remind me again~", next: "afterChoice" },
   afterChoice: { image: "https://i.imgur.com/LYpGoP1.png", speaker: "Me", text: "Anyway..., no matter what I'm just happy that you're here with me. I love you.", next: "final" },
-  final: { image: "https://i.imgur.com/LYpGoP1.png", speaker: "You", text: "I love you too 💖" }
+  final: { image: "https://i.imgur.com/LYpGoP1.png", speaker: "You", text: "I love you too 💖", next: null }
 };
 
 let currentScene = "start";
@@ -235,6 +232,7 @@ let isTyping = false;
 let musicMuted = false;
 
 const startScreen = document.getElementById("start-screen");
+const endingScreen = document.getElementById("ending-screen");
 const gameContainer = document.querySelector(".game-container");
 const scene = document.getElementById("scene");
 const speaker = document.getElementById("speaker");
@@ -294,6 +292,14 @@ function showScene(name) {
   }
 
   if (current.sound === "heart") heartSFX.play();
+
+  // 🌸 Show ending screen
+  if (name === "final") {
+    setTimeout(() => {
+      gameContainer.style.display = "none";
+      endingScreen.style.display = "flex";
+    }, 3000);
+  }
 }
 
 function typeText(content) {
@@ -321,6 +327,12 @@ musicBtn.addEventListener("click", () => {
 
 function updateMusicButton() {
   musicBtn.textContent = musicMuted ? "🔇 Music Off" : "🎵 Music On";
+}
+
+function restartGame() {
+  endingScreen.style.display = "none";
+  gameContainer.style.display = "block";
+  showScene("start");
 }
 </script>
 
