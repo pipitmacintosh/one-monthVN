@@ -265,7 +265,7 @@ function showScene(name){
     const checkFinish=setInterval(()=>{
       if(!isTyping){
         clearInterval(checkFinish);
-        setTimeout(()=>{showEnding();},1500);
+        setTimeout(()=>{showEnding();},1000);
       }
     },200);
   }
@@ -308,4 +308,5 @@ function restartGame(){
 </script>
 </body>
 </html>
+
 
