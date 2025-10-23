@@ -14,6 +14,14 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background: 
+      linear-gradient(rgba(255, 180, 180, 0.4), rgba(255, 100, 150, 0.4)),
+      url('https://images.unsplash.com/photo-1501973801540-537f08ccae7b?auto=format&fit=crop&w=1280&q=80') 
+      no-repeat center center fixed;
+    background-size: cover;
+
+    /* Smooth fade saat load */
+    animation: fadeIn 2s ease-in-out;
   }
 
   .game-container {
@@ -365,3 +373,4 @@ function updateMusicButton() { musicBtn.textContent = musicMuted ? "🔇 Music O
 
 </body>
 </html>
+
