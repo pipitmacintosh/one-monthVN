@@ -140,7 +140,7 @@
   #ending-screen {
     display:none;
     opacity:0;
-    transition:opacity 2s ease-in-out;
+    transition:opacity 1s ease-in-out;
   }
   #ending-screen button {
     margin-top:25px;
@@ -265,7 +265,7 @@ function showScene(name){
     const checkFinish=setInterval(()=>{
       if(!isTyping){
         clearInterval(checkFinish);
-        setTimeout(()=>{showEnding();},500);
+        setTimeout(()=>{showEnding();},100);
       }
     },200);
   }
@@ -308,6 +308,7 @@ function restartGame(){
 </script>
 </body>
 </html>
+
 
 
 
